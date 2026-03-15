@@ -12,14 +12,15 @@
   "containerEnv": {
     "DEVCONTAINER": "true",
     "FIREWORKS_API_KEY": "${localEnv:FIREWORKS_API_KEY}",
-    "OPENCODE_CONFIG": "${containerWorkspaceFolder}/opencode.json",
+    "OPENCODE_CONFIG": "${containerWorkspaceFolder}/.opencode/config.json",
     "REPO_PATH": "${containerWorkspaceFolder}"
   },
   "customizations": {
     "vscode": {
       "extensions": [
         "github.vscode-github-actions",
-        "skellock.just"
+        "skellock.just",
+        "sst-dev.opencode"
       ]
     }
   },
