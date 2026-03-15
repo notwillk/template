@@ -10,32 +10,52 @@ jobs:
   devcontainer:
     name: Build Devcontainer
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
-      - uses: devcontainers/ci@v0.3
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Build and push devcontainer
+        uses: devcontainers/ci@v0.3
         with:
-          runCmd: echo "Devcontainer built"
+          imageName: ghcr.io/${{ github.repository }}/devcontainer
+          cacheFrom: ghcr.io/${{ github.repository }}/devcontainer
+          push: always
 
   static:
     name: Run Static Analysis
     needs: devcontainer
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     steps:
       - uses: actions/checkout@v4
-
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - uses: devcontainers/ci@v0.3
         with:
+          cacheFrom: ghcr.io/${{ github.repository }}/devcontainer
+          push: never
           runCmd: just static
 
   test:
     name: Run Tests
     needs: devcontainer
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     steps:
       - uses: actions/checkout@v4
-
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - uses: devcontainers/ci@v0.3
         with:
+          cacheFrom: ghcr.io/${{ github.repository }}/devcontainer
+          push: never
           runCmd: just test
 
   done:

@@ -2,6 +2,8 @@ name: Apply repo settings
 
 on:
   push:
+    branches:
+      - main
     paths:
       - ".github/settings.yml"
 
@@ -11,3 +13,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: gh repo edit --enable-issues=false
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
