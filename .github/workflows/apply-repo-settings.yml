@@ -1,0 +1,13 @@
+name: Apply repo settings
+
+on:
+  push:
+    paths:
+      - ".github/settings.yml"
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: gh repo edit --enable-issues=false
