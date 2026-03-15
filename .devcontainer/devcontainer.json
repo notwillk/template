@@ -4,6 +4,7 @@
   "features": {
     "ghcr.io/notwillk/checksy/checksy": {},
     "ghcr.io/devcontainers/features/docker-in-docker": {},
+    "ghcr.io/notwillk/devcontainer-features/github-cli": {},
     "ghcr.io/notwillk/devcontainer-features/just": {},
     "ghcr.io/notwillk/devcontainer-features/jq": {},
     "ghcr.io/notwillk/devcontainer-features/opencode": {},
