@@ -1,7 +1,7 @@
 {
   "recommendations": [
-    "anthropic.claude-code",
     "github.vscode-github-actions",
-    "skellock.just"
+    "skellock.just",
+    "sst-dev.opencode"
   ]
 }
