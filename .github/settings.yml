@@ -1,9 +1,10 @@
 repository:
-  name: template # Update this to your repository name
-  private: true
+  private: false
   has_issues: false
   has_projects: false
   has_wiki: false
+  delete_branch_on_merge: true
+  default_branch: main
 
 branches:
   - name: main
