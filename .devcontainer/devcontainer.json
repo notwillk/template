@@ -1,22 +1,23 @@
 {
   "name": "dev",
-	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/notwillk/devcontainer-features/checksy": {},
-    "ghcr.io/notwillk/devcontainer-features/claude-auth-persist": {},
+    "ghcr.io/notwillk/checksy/checksy": {},
+    "ghcr.io/devcontainers/features/docker-in-docker": {},
     "ghcr.io/notwillk/devcontainer-features/just": {},
     "ghcr.io/notwillk/devcontainer-features/jq": {},
     "ghcr.io/notwillk/devcontainer-features/opencode": {},
     "ghcr.io/notwillk/devcontainer-features/watchexec": {}
   },
-	"containerEnv": {
-		"REPO_PATH": "${containerWorkspaceFolder}",
-    "DEVCONTAINER": "true"
-	},
+  "containerEnv": {
+    "DEVCONTAINER": "true",
+    "FIREWORKS_API_KEY": "${localEnv:FIREWORKS_API_KEY}",
+    "OPENCODE_CONFIG": "${containerWorkspaceFolder}/opencode.json",
+    "REPO_PATH": "${containerWorkspaceFolder}"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
-        "anthropic.claude-code",
         "github.vscode-github-actions",
         "skellock.just"
       ]
