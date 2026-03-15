@@ -7,7 +7,18 @@ on:
   pull_request:
 
 jobs:
+  devcontainer:
+    name: Build Devcontainer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: devcontainers/ci@v0.3
+        with:
+          runCmd: echo "Devcontainer built"
+
   static:
+    name: Run Static Analysis
+    needs: devcontainer
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,6 +28,8 @@ jobs:
           runCmd: just static
 
   test:
+    name: Run Tests
+    needs: devcontainer
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,3 +37,10 @@ jobs:
       - uses: devcontainers/ci@v0.3
         with:
           runCmd: just test
+
+  done:
+    name: 🥳
+    needs: [test, static]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Done"
