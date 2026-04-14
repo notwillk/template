@@ -18,3 +18,5 @@ vendor/
 
 # Temp directory
 .tmp/
+
+.schemas/*.schema.json

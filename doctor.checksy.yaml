@@ -41,3 +41,12 @@ rules:
       UNION=$(sort -u /tmp/_dc_ext.txt /tmp/_vsc_ext.txt | jq -Rcs '[split("\n")[] | select(length > 0)]')
       jq --argjson u "$UNION" '.recommendations = $u' .vscode/extensions.json > /tmp/_vscode_ext.json && mv /tmp/_vscode_ext.json .vscode/extensions.json
       jq --argjson u "$UNION" '.customizations.vscode.extensions = $u' .devcontainer/devcontainer.json > /tmp/_dc_ext.json && mv /tmp/_dc_ext.json .devcontainer/devcontainer.json
+
+  - name: checksy schemas installed
+    check: >
+      diff
+      <(checksy schema)
+      <(cat .schemas/checksy.schema.json)
+      > /dev/null 2>&1
+    fix: checksy schema > .schemas/checksy.schema.json
+    severity: warn
