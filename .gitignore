@@ -19,4 +19,8 @@ vendor/
 # Temp directory
 .tmp/
 
+# Schemas
 .schemas/*.schema.json
+
+# Checksy cache
+.checksy-cache
