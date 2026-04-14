@@ -15,3 +15,6 @@ out/
 # Dependencies
 node_modules/
 vendor/
+
+# Temp directory
+.tmp/

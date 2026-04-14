@@ -13,13 +13,16 @@
   "containerEnv": {
     "DEVCONTAINER": "true",
     "FIREWORKS_API_KEY": "${localEnv:FIREWORKS_API_KEY}",
-    "MOONSHOT_API_KEY": "${localEnv:MOONSHOT_API_KEY}",
     "OPENCODE_CONFIG": "${containerWorkspaceFolder}/.opencode/config.json",
     "REPO_PATH": "${containerWorkspaceFolder}"
+  },
+  "remoteEnv": {
+    "PATH": "${containerWorkspaceFolder}/bin:${env:PATH}"
   },
   "customizations": {
     "vscode": {
       "extensions": [
+        "bierner.markdown-mermaid",
         "github.vscode-github-actions",
         "skellock.just",
         "sst-dev.opencode"
